@@ -16,13 +16,32 @@ Small library to help getting started for creating material design navigation dr
     }
     
 ### How to use
-
-todo
    
-
+  
+    
 ### NavigationDrawer
 
+To keep the translucent status bar make sure to have a CoordinatorLayout as root element with fitSystemWindows enabled. 
+    
+    <android.support.design.widget.CoordinatorLayout
+        android:fitsSystemWindows="true"
+
 ### ActionBar
+
+
+  
+#### With Custom ActionBar
+    
+    MaterialMenu.setActionBar(new MyToolbar(this));
+  
+    <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+   
+Otherwise you might hit this exception:
+    
+    java.lang.RuntimeException: java.lang.IllegalStateException: This Activity already has an action bar supplied by the window decor. Do not request Window.FEATURE_SUPPORT_ACTION_BAR and set windowActionBar to false in your theme to use a Toolbar instead.
 
 ### Menu    
             
