@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     public List<MenuItem> createUserMenu() {
         final List<MenuItem> list = new ArrayList<>();
         list.add(new MenuItem().setLabel(R.string.menu_item1).setIcon(R.drawable.ic_bug_report_black_18dp).setAnalyticsTag(R.string.ga_menu_item1).setOpenFragmentAction(RandomFragment.class));
-        list.add(new MenuItem().setLabel(R.string.menu_item2).setIcon(R.drawable.ic_vpn_key_black_18dp).setAnalyticsTag(R.string.ga_menu_item2).setAction(v -> MaterialMenu.showActionBar(false)));
+        list.add(new MenuItem().setLabel(R.string.menu_item2).setIcon(R.drawable.ic_vpn_key_black_18dp).setAnalyticsTag(R.string.ga_menu_item2).setOpenFragmentAction(RandomFragment.class))
+        ;
         list.add(new MenuItem().setLabel(R.string.menu_item3).setIcon(R.drawable.ic_lock_black_18dp).setAnalyticsTag(R.string.ga_menu_item3).setAction(v -> logout()));
         return list;
     }
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public List<MenuItem> createGuestMenu() {
         final List<MenuItem> list = new ArrayList<>();
         list.add(new MenuItem().setLabel(R.string.menu_item1).setIcon(R.drawable.ic_bug_report_black_18dp).setAnalyticsTag(R.string.ga_menu_item1).setOpenFragmentAction(RandomFragment.class).setPresenter(CustomMenuItemPresenter.class));
-        list.add(new MenuItem().setLabel(R.string.menu_item4).setIcon(R.drawable.ic_play_arrow_black_18dp).setAnalyticsTag(R.string.ga_menu_item4).setAction(v -> MaterialMenu.showActionBar(true)).setPresenter(CustomMenuItemPresenter.class));
+        list.add(new MenuItem().setLabel(R.string.menu_item4).setIcon(R.drawable.ic_play_arrow_black_18dp).setAnalyticsTag(R.string.ga_menu_item4).setOpenFragmentAction(RandomFragment.class).setPresenter(CustomMenuItemPresenter.class));
         list.add(new MenuItem().setLabel(R.string.menu_item5).setIcon(R.drawable.ic_lock_open_black_18dp).setAnalyticsTag(R.string.ga_menu_item5).setAction(v -> login()).setPresenter(CustomMenuItemPresenter.class));
         return list;
     }
