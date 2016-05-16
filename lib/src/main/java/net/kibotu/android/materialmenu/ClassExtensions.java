@@ -3,14 +3,12 @@ package net.kibotu.android.materialmenu;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
-import net.kibotu.android.materialmenu.FragmentTag;
-
 import java.lang.reflect.InvocationTargetException;
 
 /**
  * Created by Nyaruhodo on 15.05.2016.
  */
-public class ClassExtensions {
+class ClassExtensions {
 
     @NonNull
     public static <T extends Fragment & FragmentTag> T newFragment(final Class<T> fragmentClass) {
