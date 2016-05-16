@@ -72,6 +72,9 @@ public class MaterialMenu {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getContext(), drawer.drawerLayout, materialToolbar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+        setDrawerLockModeRightDrawer(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        setDrawerLockModeLeftDrawer(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
     @NonNull
@@ -157,12 +160,14 @@ public class MaterialMenu {
     @NonNull
     public <T extends Fragment & FragmentTag> MaterialMenu setLeftDrawerFragment(@NonNull final T fragment) {
         replaceFragment(leftDrawerFragmentId(), fragment);
+        setDrawerLockModeLeftDrawer(DrawerLayout.LOCK_MODE_UNLOCKED);
         return this;
     }
 
     @NonNull
     public <T extends Fragment & FragmentTag> MaterialMenu setRightDrawerFragment(@NonNull final T fragment) {
         replaceFragment(rightDrawerFragmentId(), fragment);
+        setDrawerLockModeRightDrawer(DrawerLayout.LOCK_MODE_UNLOCKED);
         return this;
     }
 
