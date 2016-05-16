@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_item1">menu_item1</string>
+    <string name="menu_item2">menu_item2</string>
+    <string name="menu_item3">menu_item3</string>
+    <string name="menu_item4">menu_item4</string>
+    <string name="menu_item5">menu_item5</string>
+
+    <string name="ga_menu_item1">ga_menu_item1</string>
+    <string name="ga_menu_item2">ga_menu_item2</string>
+    <string name="ga_menu_item3">ga_menu_item3</string>
+    <string name="ga_menu_item4">ga_menu_item4</string>
+    <string name="ga_menu_item5">ga_menu_item5</string>
+</resources>
