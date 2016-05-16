@@ -35,7 +35,6 @@ public class Toolbar /* extends BaseViewHolder implements Localized*/ {
 //        final SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
 //        searchView.setSearchableInfo(searchManager.getSearchableInfo(getContext().getComponentName()));
 //
-//        // TODO: 29/02/16 move into questico flavor folder
 //        if (BuildConfig.FLAVOR.equalsIgnoreCase("questico")) {
 //            searchPlate.setBackgroundResource(R.drawable.textfield_search_selected_holo_light);
 //            searchEditText.setTextColor(Color.WHITE);
