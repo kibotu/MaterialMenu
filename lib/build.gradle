@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: "me.tatarka.retrolambda"
+apply plugin: 'android-apt'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 android {
     compileSdkVersion 23
@@ -9,15 +12,47 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        renderscriptSupportModeEnabled true
+        renderscriptTargetApi 20
     }
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources = false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    dexOptions {
+        incremental true
+        preDexLibraries = false
+        jumboMode = false
+        javaMaxHeapSize "4g"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'
     }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile "com.android.support:appcompat-v7:$com_android_support_version"
+    compile "com.android.support:design:$com_android_support_version"
+    compile "com.android.support:recyclerview-v7:$com_android_support_version"
+
+    // Accordion Menu
+    compile 'com.bignerdranch.android:expandablerecyclerview:2.1.1'
+
+    // RecyclerView presenter
+    compile 'com.github.kibotu:RecyclerViewPresenter:1.0.1'
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }
