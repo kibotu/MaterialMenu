@@ -64,6 +64,7 @@ public class MaterialMenu {
         adapter = new PresenterAdapter<>();
         drawer = new Drawer(context);
         materialToolbar = new SimpleMaterialToolbar(context);
+        context.setSupportActionBar(materialToolbar.toolbar);
         init();
     }
 
@@ -179,7 +180,6 @@ public class MaterialMenu {
     }
 
     protected static void configureActionBar(@NonNull final AppCompatActivity context, @NonNull final MaterialToolbar materialToolbar) {
-        context.setSupportActionBar(materialToolbar.toolbar);
         final ActionBar actionBar = context.getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);

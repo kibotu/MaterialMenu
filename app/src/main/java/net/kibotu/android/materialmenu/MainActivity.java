@@ -10,6 +10,7 @@ import net.kibotu.android.materialmenu.ui.CustomMenuItemPresenter;
 import net.kibotu.android.materialmenu.ui.LeftDrawerFragment;
 import net.kibotu.android.materialmenu.ui.RandomFragment;
 import net.kibotu.android.materialmenu.ui.RightDrawerFragment;
+import net.kibotu.android.materialmenu.ui.SearchToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialMenu.with(this)
                 .addMenuItem(createUserMenu())
-                .setActionBar(new SimpleMaterialToolbar(this))
+                .setActionBar(new SearchToolbar(this))
                 .setLeftDrawerFragment(new LeftDrawerFragment())
                 .setRightDrawerFragment(new RightDrawerFragment());
 
