@@ -156,7 +156,7 @@ public class MaterialMenu {
         return getInstance();
     }
 
-    @NonNull
+    @Nullable
     public static AppCompatActivity getContext() {
         return getInstance().context;
     }
@@ -192,8 +192,16 @@ public class MaterialMenu {
         return getInstance();
     }
 
-    protected static void configureActionBar(@NonNull final AppCompatActivity context, @NonNull final MaterialToolbar materialToolbar) {
+    protected static void configureActionBar(@Nullable final AppCompatActivity context, @NonNull final MaterialToolbar materialToolbar) {
+        materialToolbar.toolbar.setContentInsetsAbsolute(0, 0);
+
+        if(context == null)
+            return;
+
         final ActionBar actionBar = context.getSupportActionBar();
+        if (actionBar == null)
+            return;
+
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setHomeButtonEnabled(false);
@@ -202,22 +210,37 @@ public class MaterialMenu {
         actionBar.setHomeButtonEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setHomeAsUpIndicator(null);
-        materialToolbar.toolbar.setContentInsetsAbsolute(0, 0);
     }
 
     public static void setCustomView(@NonNull final View view) {
-        final ActionBar actionBar = getContext().getSupportActionBar();
+        final AppCompatActivity context = getContext();
+        if(context == null)
+            return;
+
+        final ActionBar actionBar = context.getSupportActionBar();
+        if (actionBar == null)
+            return;
+
         actionBar.setDisplayShowCustomEnabled(true);
-        getContext().getSupportActionBar().setCustomView(view);
+        actionBar.setCustomView(view);
     }
 
     @NonNull
     public static MaterialMenu showActionBar(final boolean isVisible) {
         final MaterialMenu instance = getInstance();
+
+        final AppCompatActivity context = getContext();
+        if(context == null)
+            return instance;
+
+        final ActionBar supportActionBar = context.getSupportActionBar();
+        if(supportActionBar == null)
+            return instance;
+
         if (isVisible) {
-            getContext().getSupportActionBar().show();
+            supportActionBar.show();
         } else {
-            getContext().getSupportActionBar().hide();
+            supportActionBar.hide();
         }
 
         return instance;
@@ -287,12 +310,13 @@ public class MaterialMenu {
     public static boolean onCreateOptionsMenu(@NonNull final Activity activity, @Nullable final Menu menu) {
         if (menu == null)
             return false;
+
         activity.getMenuInflater().inflate(R.menu.search_item, menu);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_toolbar_search));
-        SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getContext().getComponentName()));
+        SearchManager searchManager = (SearchManager) activity.getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(activity.getComponentName()));
 
-        if(getInstance().materialToolbar instanceof Configurator)
+        if (getInstance().materialToolbar instanceof Configurator)
             ((Configurator<SearchView>) getInstance().materialToolbar).configure(searchView);
 
         return true;
