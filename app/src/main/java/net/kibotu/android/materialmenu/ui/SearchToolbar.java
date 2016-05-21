@@ -4,38 +4,48 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import net.kibotu.android.materialmenu.Configurator;
 import net.kibotu.android.materialmenu.MaterialToolbar;
 import net.kibotu.android.materialmenu.R;
+import net.kibotu.android.materialmenu.ViewExtensions;
+
+import butterknife.BindView;
 
 /**
- * Created by jan.rabe on 17/05/16.
+ * Created by Nyaruhodo on 21.05.2016.
  */
-public class SearchToolbar extends MaterialToolbar {
+public class SearchToolbar extends MaterialToolbar implements Configurator<SearchView> {
 
-    protected View homeIconHitBox;
-
-    protected ImageView homeIcon;
-
+    @BindView(R.id.actionbar_title)
     protected TextView title;
-
-    protected SearchView searchView;
 
     public SearchToolbar(@NonNull AppCompatActivity context) {
         super(context);
-
-        homeIcon = (ImageView) context.findViewById(net.kibotu.materialmenu.R.id.home_icon);
-//        homeIconHitBox = context.findViewById(net.kibotu.materialmenu.R.id.icon_layout);
-        title = (TextView) context.findViewById(net.kibotu.materialmenu.R.id.actionbar_title);
-        searchView = (SearchView) context.findViewById(R.id.menu_toolbar_search);
     }
-
-
 
     @Override
     public int getLayout() {
-        return R.layout.search_toolbar;
+        return R.layout.custom_toolbar;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+    }
+
+    @Override
+    public void onBind() {
+
+    }
+
+    @Override
+    public void configure(@NonNull final SearchView searchView) {
+        EditText searchText = (EditText) searchView.findViewById(R.id.search_src_text);
+        View searchPlate = searchView.findViewById(R.id.search_plate);
+        searchPlate.setBackgroundColor(ViewExtensions.color(android.R.color.transparent));
+        searchText.setBackgroundColor(ViewExtensions.color(android.R.color.transparent));
     }
 }

@@ -6,15 +6,6 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/home_icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="10dp"
-        android:src="@drawable/ic_search_white_24dp" />
-
     <TextView
         android:id="@+id/actionbar_title"
         android:layout_width="wrap_content"
@@ -22,13 +13,6 @@
         android:gravity="center_vertical"
         android:singleLine="true"
         android:textSize="20sp" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/transparent"
-        android:focusable="true"
-        android:focusableInTouchMode="true"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,7 +31,7 @@
             android:id="@+id/menu_toolbar_search"
             style="@style/AppTheme.SearchView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:icon="@drawable/ic_search_white_24dp"
             android:textStyle="normal" />
 

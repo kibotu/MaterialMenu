@@ -2,12 +2,15 @@ package net.kibotu.android.materialmenu;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.kibotu.materialmenu.R;
+
+import static android.text.TextUtils.isEmpty;
 
 /**
  * Created by Nyaruhodo on 16.05.2016.
@@ -23,17 +26,26 @@ public class SimpleMaterialToolbar extends MaterialToolbar {
     public SimpleMaterialToolbar(@NonNull final AppCompatActivity context) {
         super(context);
 
-        homeIcon = (ImageView) context.findViewById(R.id.home_icon);
-        homeIconHitBox = context.findViewById(R.id.icon_layout);
-        title = (TextView) context.findViewById(R.id.actionbar_title);
-
-        MaterialMenu.setLeftDrawerOpenHitBox(homeIconHitBox);
     }
 
     @Override
     public int getLayout() {
-        return R.layout.default_custom_toolbar;
+        return R.layout.custom_toolbar;
     }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        homeIcon = (ImageView) context.findViewById(R.id.home_icon);
+        homeIconHitBox = context.findViewById(R.id.icon_layout);
+        title = (TextView) context.findViewById(R.id.actionbar_title);
+    }
+
+    @Override
+    public void onBind() {
+        MaterialMenu.setLeftDrawerOpenHitBox(homeIconHitBox);
+    }
+
 
     public void setHomeIcon(@DrawableRes final int drawable) {
 //        getSupportActionBar().setHomeAsUpIndicator(drawable(drawable));
@@ -53,8 +65,9 @@ public class SimpleMaterialToolbar extends MaterialToolbar {
 
     }
 
-    public void setTitle(@NonNull final String title) {
-//        getSupportActionBar().setTitle(title);
-//        actionbarViewHolder.title.setText("" + title);
+    public void setTitle(@Nullable final String title) {
+        this.title.setText(isEmpty(title)
+                ? ""
+                : title);
     }
 }

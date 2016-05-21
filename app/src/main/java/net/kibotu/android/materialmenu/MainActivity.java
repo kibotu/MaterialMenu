@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.Menu;
 import android.widget.Toast;
 
 import net.kibotu.android.materialmenu.ui.CustomMenuItemPresenter;
 import net.kibotu.android.materialmenu.ui.LeftDrawerFragment;
 import net.kibotu.android.materialmenu.ui.RandomFragment;
 import net.kibotu.android.materialmenu.ui.RightDrawerFragment;
-import net.kibotu.android.materialmenu.ui.SearchToolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialMenu.with(this)
                 .addMenuItem(createUserMenu())
-                .setActionBar(new SearchToolbar(this))
+                .setActionBar(new SimpleMaterialToolbar(this))
                 .setLeftDrawerFragment(new LeftDrawerFragment())
                 .setRightDrawerFragment(new RightDrawerFragment());
 
@@ -78,5 +78,10 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return MaterialMenu.onCreateOptionsMenu(this, menu);
     }
 }

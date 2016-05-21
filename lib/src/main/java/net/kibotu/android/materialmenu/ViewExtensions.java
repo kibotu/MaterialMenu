@@ -1,13 +1,23 @@
 package net.kibotu.android.materialmenu;
 
+import android.annotation.TargetApi;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import net.kibotu.materialmenu.R;
 
+import static android.os.Build.VERSION.SDK_INT;
+import static android.os.Build.VERSION_CODES.LOLLIPOP_MR1;
 import static net.kibotu.android.materialmenu.MaterialMenu.getContext;
 
 /**
@@ -42,4 +52,39 @@ public class ViewExtensions {
             view.setLayoutParams(layoutParams);
         }
     }
+
+    public static int color(@ColorRes final int color) {
+        return SDK_INT >= Build.VERSION_CODES.M
+                ? ContextCompat.getColor(getContext(), color)
+                : getResources().getColor(color);
+    }
+
+    public static Resources getResources() {
+        return getContext().getResources();
+    }
+
+    public static void setSize(@NonNull final View searchIcon, final int widthInDp, final int heightInDp) {
+        final ViewGroup.LayoutParams params = searchIcon.getLayoutParams();
+        params.width = dpToPx(widthInDp);
+        params.height = dpToPx(heightInDp);
+        searchIcon.setLayoutParams(params);
+    }
+
+    public static int dpToPx(final int dp) {
+        final float scale = getDensity();
+        return (int) (dp * scale + 0.5f);
+    }
+
+    public static float getDensity() {
+        return Resources.getSystem().getDisplayMetrics().density;
+    }
+
+    @Nullable
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP_MR1)
+    public static Drawable drawable(@DrawableRes final int drawable) {
+        return SDK_INT >= LOLLIPOP_MR1
+                ? getResources().getDrawable(drawable, getContext().getTheme())
+                : getResources().getDrawable(drawable);
+    }
+
 }

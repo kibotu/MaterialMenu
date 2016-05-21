@@ -1,15 +1,21 @@
 package net.kibotu.android.materialmenu;
 
+import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.View;
 
 import net.kibotu.android.recyclerviewpresenter.PresenterAdapter;
@@ -56,6 +62,8 @@ public class MaterialMenu {
      */
     protected Drawer drawer;
 
+    private ActionBarDrawerToggle toggle;
+
     // endregion
 
     protected MaterialMenu(@NonNull final AppCompatActivity context) {
@@ -70,12 +78,14 @@ public class MaterialMenu {
 
     protected void init() {
         setActionBar(materialToolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getContext(), drawer.drawerLayout, materialToolbar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
         setDrawerLockModeRightDrawer(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         setDrawerLockModeLeftDrawer(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    protected void setActionBarToggle() {
+        toggle = new ActionBarDrawerToggle(getContext(), drawer.drawerLayout, materialToolbar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @NonNull
@@ -176,20 +186,28 @@ public class MaterialMenu {
         getInstance().materialToolbar = toolbar;
         configureActionBar(getContext(), toolbar);
         setCustomView(ViewExtensions.inflate(toolbar.getLayout()));
+        toolbar.onCreate();
+        toolbar.onBind();
+        getInstance().setActionBarToggle();
         return getInstance();
     }
 
     protected static void configureActionBar(@NonNull final AppCompatActivity context, @NonNull final MaterialToolbar materialToolbar) {
         final ActionBar actionBar = context.getSupportActionBar();
-        actionBar.setDisplayShowCustomEnabled(true);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setDefaultDisplayHomeAsUpEnabled(false);
         actionBar.setIcon(android.R.color.transparent);
         actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(false);
+        actionBar.setHomeAsUpIndicator(null);
         materialToolbar.toolbar.setContentInsetsAbsolute(0, 0);
     }
 
     public static void setCustomView(@NonNull final View view) {
+        final ActionBar actionBar = getContext().getSupportActionBar();
+        actionBar.setDisplayShowCustomEnabled(true);
         getContext().getSupportActionBar().setCustomView(view);
     }
 
@@ -264,5 +282,19 @@ public class MaterialMenu {
         final MaterialMenu instance = getInstance();
         instance.setDrawerLockMode(lockMode, instance.drawer.rightDrawerView);
         return instance;
+    }
+
+    public static boolean onCreateOptionsMenu(@NonNull final Activity activity, @Nullable final Menu menu) {
+        if (menu == null)
+            return false;
+        activity.getMenuInflater().inflate(R.menu.search_item, menu);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.menu_toolbar_search));
+        SearchManager searchManager = (SearchManager) getContext().getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getContext().getComponentName()));
+
+        if(getInstance().materialToolbar instanceof Configurator)
+            ((Configurator<SearchView>) getInstance().materialToolbar).configure(searchView);
+
+        return true;
     }
 }
