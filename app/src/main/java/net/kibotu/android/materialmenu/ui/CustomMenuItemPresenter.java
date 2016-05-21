@@ -53,7 +53,7 @@ public class CustomMenuItemPresenter extends Presenter<MenuItem, CustomMenuItemP
 
         viewHolder.label.setText(context.getString(item.getLabel()));
 
-        //        final Fragment currentFragment = currentFragment();
+//        final Fragment currentFragment = currentFragment();
 //        if (currentFragment != null && item.getFragment().tag().equalsIgnoreCase(currentFragment.getClass().getSimpleName()))
 //            return;
 

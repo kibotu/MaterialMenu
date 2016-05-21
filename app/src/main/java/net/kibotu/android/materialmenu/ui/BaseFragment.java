@@ -36,24 +36,6 @@ public abstract class BaseFragment extends Fragment implements FragmentTag {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-
-//        final Drawer drawer = getDrawerViewHolder();
-//        if (drawer != null)
-//            drawer.updateActionBar(this);
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-//        final Drawer drawer = getDrawerViewHolder();
-//        if (drawer != null)
-//            drawer.updateActionBar();
-    }
-
-    @Override
     final public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         if (rootView == null) {
             final int layout = getLayout();
@@ -69,13 +51,6 @@ public abstract class BaseFragment extends Fragment implements FragmentTag {
         unbinder.unbind();
     }
 
-    //    @DrawableRes
-//    @Override
-//    public int getHomeIcon() {
-//        return isInRoot()
-//                ? getRootHomeIcon()
-//                : getSubMenuHomeIcon();
-//    }
     @NonNull
     @Override
     public String fragmentTag() {

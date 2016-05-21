@@ -1,14 +1,5 @@
 <resources>
 
-    <!--<style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar">-->
-    <!--&lt;!&ndash;<item name="android:textColor">@color/DetailFragmentBlueLight</item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<item name="theme">@style/ThemeOverlay.MyApp.ActionBar</item>&ndash;&gt;-->
-    <!--<item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>-->
-    <!--&lt;!&ndash;<item name="android:background">@drawable/top_gradient_selector</item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<item name="android:scaleType">fitStart</item>&ndash;&gt;-->
-    <!--</style>-->
-
-
     <style name="AppTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -24,36 +15,19 @@
         <item name="searchViewStyle">@style/AppTheme.SearchView</item>
     </style>
 
-    <!--<style name="ThemeOverlay.MyApp.ActionBar" parent="@style/ThemeOverlay.AppCompat.ActionBar">-->
-        <!--<item name="android:textColorPrimary">@color/textColorPrimary</item>-->
-    <!--</style>-->
-
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="ToolbarStyle" parent="@style/Widget.AppCompat.ActionBar">
-        <!--<item name="android:textColor">@color/textColor</item>-->
-        <!--<item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>-->
-        <!--<item name="android:background">@color/colorPrimary</item>-->
-        <!--<item name="android:scaleType">fitStart</item>-->
-        <!--<item name="theme">@style/ThemeOverlay.MyApp.ActionBar</item>-->
     </style>
 
     <style name="AppTheme.SearchView" parent="Widget.AppCompat.SearchView">
         <item name="android:textStyle">normal</item>
         <item name="searchIcon">@drawable/ic_arrow_back_white_24dp</item>
-        <!--<item name="voiceIcon">@drawable/ic_search_white_24dp</item>-->
-        <!--<item name="commitIcon">@drawable/ic_search_white_24dp</item>-->
-        <!--<item name="goIcon">@drawable/ic_search_white_24dp</item>-->
-        <!--<item name="closeIcon">@drawable/ic_close_white_24dp</item>-->
-
         <item name="iconifiedByDefault">false</item>
-        <!--<item name="queryHint">@string/expert_list_search_title</item>-->
-
         <item name="queryBackground">@android:color/transparent</item>
         <item name="submitBackground">@android:color/transparent</item>
-
     </style>
 
 </resources>

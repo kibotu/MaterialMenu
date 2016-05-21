@@ -51,19 +51,10 @@ public class MenuItemPresenter extends Presenter<MenuItem, MenuItemPresenter.Vie
 
         viewHolder.label.setText(context.getString(item.label));
 
-        if (item.action != null)
+        if (item.action != null) {
+            MaterialMenu.closeDrawers();
             viewHolder.itemView.setOnClickListener(item.action::onClick);
-
-        //        viewHolder.textView.setText(item.getLocalizedName());
-//        viewHolder.imageView.setImageResource(item.getIconId());
-//        viewHolder.itemView.setOnClickListener(v -> {
-//            MainMenuProvider.provide().closeDrawers();
-//
-//            if (item.hasAction())
-//                item.getAction().run();
-//            else if (item.getFragmentClass() != null)
-//                replaceToBackStackBySlidingHorizontally(item.getFragment());
-//        });
+        }
     }
 
     public static class ViewHolder extends BaseViewHolder {

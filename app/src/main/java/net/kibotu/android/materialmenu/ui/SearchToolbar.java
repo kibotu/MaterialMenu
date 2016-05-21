@@ -32,16 +32,6 @@ public class SearchToolbar extends MaterialToolbar implements Configurator<Searc
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-    }
-
-    @Override
-    public void onBind() {
-
-    }
-
-    @Override
     public void configure(@NonNull final SearchView searchView) {
         EditText searchText = (EditText) searchView.findViewById(R.id.search_src_text);
         View searchPlate = searchView.findViewById(R.id.search_plate);
